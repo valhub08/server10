@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/server10_db?useSSL=false&serverTimezone=UTC
+    username: server10_user
+    password: amgfaa289!@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+logging:
+  level:
+    com.example: debug
+jwt:
+  secret: jHkb4lgNCk/N2GJ7Jx08To+7duFpeVQ6uoEbdy23Panf+hWKarPu5z9uDwKORftpJ2kRRcI+0+wpUaYKzXod7w==
+  access-token-validity-in-seconds: 1800 # 30?
+  refresh-token-validity-in-seconds: 604800 # 7?
