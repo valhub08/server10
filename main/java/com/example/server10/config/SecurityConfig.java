@@ -62,8 +62,11 @@ public class SecurityConfig {
                 // URL 권한 설정
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll() // 인증 없이 접근 허용
-                        .anyRequest().authenticated() // 그 외 모든 요청은 인증 필요
-                );
+                        .anyRequest().permitAll()
+                );// 모든 요청 허용
+//                .authorizeRequests()
+//                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Swagger 관련 경로 허용
+//                .anyRequest().authenticated(); // 그 외의 경로는 인증 필요
 
         return http.build(); // 올바르게 http.build() 반환
     }
