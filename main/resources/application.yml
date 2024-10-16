@@ -11,8 +11,14 @@ spring:
     show-sql: true
 logging:
   level:
-    com.example: debug
+    org.hibernate: info
+    org.springframework: info
 jwt:
   secret: jHkb4lgNCk/N2GJ7Jx08To+7duFpeVQ6uoEbdy23Panf+hWKarPu5z9uDwKORftpJ2kRRcI+0+wpUaYKzXod7w==
   access-token-validity-in-seconds: 1800 # 30분
   refresh-token-validity-in-seconds: 604800 # 7일
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
