@@ -70,4 +70,5 @@ public class SecurityConfig {
 
         return http.build(); // 올바르게 http.build() 반환
     }
+
 }
