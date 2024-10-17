@@ -40,10 +40,5 @@ public class AuthLoginController {
     public ResponseEntity<TokenDto> login(@Valid @RequestBody LoginDto loginDto) {
         return ResponseEntity.ok(authService.login(loginDto));
     }
-//    @PostMapping("/auth/login")
-//    public ResponseEntity<TokenDto> login(@Valid @RequestBody LoginDto loginDto) {
-//        // 로그인 처리 로직 추가
-//        return ResponseEntity.ok(new TokenDto("Bearer", "access-token", 3600L, "refresh-token"));
-//        // return ResponseEntity.ok(authService.login(loginDto));
-//    }
+
 }
