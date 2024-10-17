@@ -1,0 +1,40 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치로 푸시할 때 CI/CD 작동
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: SSH to EC2 and deploy
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.SSH_PUBLIC_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # 애플리케이션 종료 (포트 8080 사용 중인 프로세스 종료)
+            PID=$(lsof -t -i:8080)
+            if [ -z "$PID" ]; then
+              echo "No process running on port 8080"
+            else
+              echo "Killing process $PID"
+              kill -9 $PID
+            fi
+
+            # Git 리포지토리 업데이트 및 빌드
+            cd ~/app
+            git pull origin main
+            chmod +x ./gradlew
+            ./gradlew clean build
+
+            # 새 JAR 파일 실행
+            cd build/libs
+            nohup java -jar Server10-0.0.1-SNAPSHOT.jar > ~/app/nohup.out 2>&1 &
