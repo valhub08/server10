@@ -23,4 +23,5 @@ public class CorsConfig {
         source.registerCorsConfiguration("/**", config); // 모든 엔드포인트에 적용
         return new CorsFilter(source);
     }
+
 }
