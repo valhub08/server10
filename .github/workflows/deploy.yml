@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main  # main 브랜치로 푸시할 때 CI/CD 작동
+      - master
 
 jobs:
   deploy:
@@ -20,7 +20,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 애플리케이션 종료 (포트 8080 사용 중인 프로세스 종료)
             PID=$(lsof -t -i:8080)
             if [ -z "$PID" ]; then
               echo "No process running on port 8080"
@@ -29,12 +28,10 @@ jobs:
               kill -9 $PID
             fi
 
-            # Git 리포지토리 업데이트 및 빌드
             cd ~/app
             git pull origin main
             chmod +x ./gradlew
             ./gradlew clean build
 
-            # 새 JAR 파일 실행
             cd build/libs
-            nohup java -jar Server10-0.0.1-SNAPSHOT.jar > ~/app/nohup.out 2>&1 &
+            nohup java -jar Server10-0.0.1-SNAPSHOT.jar > ~/server10/nohup.out 2>&1 &
