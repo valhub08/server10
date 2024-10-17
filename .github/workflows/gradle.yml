@@ -16,7 +16,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.5
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          host: ${{ secrets.SSH__PUBLIC_HOST }} 
+          host: ${{ secrets.SSH_PUBLIC_HOST }} 
           username: ${{ secrets.SSH_USERNAME }} 
           script: |
             PID=$(lsof -t -i:8080)
