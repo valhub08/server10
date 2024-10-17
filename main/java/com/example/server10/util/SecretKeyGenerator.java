@@ -12,4 +12,5 @@ public class SecretKeyGenerator {
         System.out.println("Generated JWT Secret Key:");
         System.out.println(secret);
     }
+
 }
