@@ -33,18 +33,18 @@ jobs:
     - name: Deploy to EC2
       uses: appleboy/scp-action@v0.1.4
       with:
-        host: ${{ secrets.43.202.162.117 }}
-        username: ${{ secrets.ubuntu }}
-        key: ${{ secrets.awsTest2.pem }}
+        host: ${{ secrets.SSH_PUBLIC_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         source: "build/libs/*.jar"
         target: "/home/ec2-user/app/"
 
     - name: Restart application on EC2
       uses: appleboy/ssh-action@v0.1.4
       with:
-        host: ${{ secrets.43.202.162.117 }}
-        username: ${{ secrets.ubuntu }}
-        key: ${{ secrets.awsTest2.pem }}
+        host: ${{ secrets.SSH_PUBLIC_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           pkill -f 'java -jar' || true
           nohup java -jar ~/Desktop/Server10-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
