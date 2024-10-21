@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY3 }}
           script: |
-            PID=$(lsof -t -i:8081)
+            PID=$(lsof -t -i:8080)
             if [ -z "$PID" ]; then
               echo "No process running on port 8080"
             else
