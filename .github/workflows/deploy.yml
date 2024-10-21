@@ -16,7 +16,10 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+            java-version: 17
+            distribution: 'temurin'  # 사용할 JDK 배포판
+            java-package: jdk
+            check-latest: false
 
       - name: Install dependencies and run tests
         run: |
