@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,7 +6,25 @@ on:
       - master
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+
+      - name: Install dependencies and run tests
+        run: |
+          chmod +x ./gradlew
+          ./gradlew clean test
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
