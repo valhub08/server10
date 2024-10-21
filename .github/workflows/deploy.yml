@@ -16,10 +16,10 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-            java-version: 17
-            distribution: 'temurin'  # 사용할 JDK 배포판
-            java-package: jdk
-            check-latest: false
+          java-version: 17
+          distribution: 'temurin'  # 사용할 JDK 배포판
+          java-package: jdk
+          check-latest: false
 
       - name: Install dependencies and run tests
         run: |
@@ -50,7 +50,7 @@ jobs:
             fi
 
             cd ~/app
-            git pull origin main
+            git pull origin master  # master 브랜치에서 pull
             chmod +x ./gradlew
             ./gradlew clean build
 
