@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(
         info = @Info(title = "AirDns App",
-                description = "AirDns App Api 명세서",
+                description = "App Api 명세서",
                 version = "version1"),
         security = @SecurityRequirement(name = "Bearer Authentication")  // API에 JWT 인증이 필요함을 명시
 )
@@ -29,5 +29,4 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .components(new Components());
     }
-
 }
