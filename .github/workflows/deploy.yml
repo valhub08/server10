@@ -41,18 +41,18 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY3 }}
           script: |
-            PID=$(lsof -t -i:8080)
-            if [ -z "$PID" ]; then
-              echo "No process running on port 8080"
-            else
-              echo "Killing process $PID"
-              kill -9 $PID
-            fi
+            # PID=$(lsof -t -i:8080)
+            # if [ -z "$PID" ]; then
+            #   sudo echo "No process running on port 8080"
+            # else
+            #   sudo echo "Killing process $PID"
+            #   kill -9 $PID
+            # fi
 
-            cd ~/app
-            git pull origin master  # master 브랜치에서 pull
-            chmod +x ./gradlew
-            ./gradlew clean build
+            sudo cd ~/app
+            sudo git pull origin master  # master 브랜치에서 pull
+            sudo chmod +x ./gradlew
+            sudo ./gradlew clean build
 
-            cd build/libs
-            nohup java -jar Server10-0.0.1-SNAPSHOT.jar > ~/server10/nohup.out 2>&1 &
+            sudo cd build/libs
+            sudo nohup java -jar Server10-0.0.1-SNAPSHOT.jar > ~/server10/nohup.out 2>&1 &
