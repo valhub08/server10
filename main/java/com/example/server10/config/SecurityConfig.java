@@ -52,6 +52,7 @@ public class SecurityConfig {
                 // 헤더 설정
                 .headers(headers -> headers
                         .frameOptions().sameOrigin()
+                        
                 )
 
                 // 세션 관리 정책 설정
