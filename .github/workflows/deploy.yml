@@ -36,8 +36,8 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKERHUB_ID }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
           docker build -t server10img . # Dockerfile 경로 수정
-          docker tag server10img ${{ secrets.DOCKERHUB_ID2 }}/server10img:latest
-          docker push ${{ secrets.DOCKERHUB_ID2 }}/server10img:latest
+          docker tag server10img ${{ secrets.DOCKERHUB_ID }}/server10img:latest
+          docker push ${{ secrets.DOCKERHUB_ID }}/server10img:latest
 
       - name: Deploy with SSH
         if: github.ref == 'refs/heads/master'
@@ -53,9 +53,9 @@ jobs:
             docker login -u ${{ secrets.DOCKERHUB_ID }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
             docker stop server10Container || true
             docker rm server10Container || true
-            docker rmi ${{ secrets.DOCKERHUB_ID2 }}/server10img:latest || true
-            docker pull ${{ secrets.DOCKERHUB_ID2 }}/server10img:latest
-            docker run -d -p 80:8080 --env-file ./server.env --name server10Container ${{ secrets.DOCKERHUB_ID2 }}/server10img:latest
+            docker rmi ${{ secrets.DOCKERHUB_ID }}/server10img:latest || true
+            docker pull ${{ secrets.DOCKERHUB_ID }}/server10img:latest
+            docker run -d -p 80:8080 --env-file ./server.env --name server10Container ${{ secrets.DOCKERHUB_ID }}/server10img:latest
 
   deploy:
     runs-on: ubuntu-latest
