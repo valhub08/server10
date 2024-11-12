@@ -50,10 +50,10 @@ public class SecurityConfig {
                 )
 
                 // 헤더 설정
-                .headers(headers -> headers
-                        .frameOptions().sameOrigin()
-                        
-                )
+//                .headers(headers -> headers
+//                        .frameOptions().sameOrigin()
+//
+//                )
 
                 // 세션 관리 정책 설정
                 .sessionManagement(session -> session
@@ -70,6 +70,7 @@ public class SecurityConfig {
 //                .anyRequest().authenticated(); // 그 외의 경로는 인증 필요
 
         return http.build(); // 올바르게 http.build() 반환
+
     }
 
 }
