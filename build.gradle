@@ -46,3 +46,6 @@ test {
     useJUnitPlatform()
 }
 
+bootJar {
+    mainClassName = '~/com/example/server10/Server10Application.java'
+}
